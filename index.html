@@ -154,6 +154,15 @@ section{position:relative;z-index:2}
 .addon p{font-size:14px;color:var(--muted-d);line-height:1.6}
 .addon p b{color:#fff}
 @media(max-width:900px){.plan{grid-template-columns:1fr}.price-card{position:static}}
+.opt-h{margin:80px 0 8px;display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
+.opt-h .on{font-family:var(--display);font-size:clamp(26px,3.4vw,38px);color:var(--red);line-height:1}
+.opt-h h3{font-family:var(--sans);font-weight:900;font-size:clamp(22px,3vw,32px);text-transform:uppercase;letter-spacing:-.01em;color:#fff}
+.opt-h .rec{font-family:var(--sans);font-weight:700;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);border:1px solid var(--red);border-radius:40px;padding:6px 14px}
+.opt-h.first{margin-top:10px}
+.opt-sub{font-size:15.5px;color:var(--muted-d);line-height:1.6;max-width:720px;margin-bottom:12px}
+.opt-sub b{color:#fff;font-weight:600}
+.price-card.alt{border-color:var(--line-d);background:var(--ink-soft)}
+.price-card.alt .pl{color:var(--muted-d)}
 
 /* note strip */
 .note{margin-top:56px;border-left:3px solid var(--red);padding:22px 28px;background:var(--ink-soft);border-radius:0 10px 10px 0}
@@ -334,9 +343,11 @@ section{position:relative;z-index:2}
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">06 · Plan de servicio</div>
-      <h2>Saúl Voice Studio<br><span class="red">Plan mensual.</span></h2>
-      <p class="lede">Un valor fijo mensual, presupuestable y sin sorpresas, que cubre la operación completa del estudio de voz. La fase de prueba actual concluye el <b>31 de julio de 2026</b>; el plan formal inicia el <b>1 de agosto de 2026</b>.</p>
+      <h2>Saúl Voice Studio<br><span class="red">Dos formas de tenerlo.</span></h2>
+      <p class="lede">La fase de prueba actual concluye el <b>31 de julio de 2026</b>. A partir de ahí, la marca elige el camino: un <b>plan mensual operado por ARDE</b>, o la <b>implementación completa en cuentas propias de la marca</b> con un pago único de integración.</p>
     </div>
+    <div class="opt-h first reveal"><span class="on">A</span><h3>Servicio operado por ARDE</h3><span class="rec">Recomendada</span></div>
+    <p class="opt-sub reveal">La plataforma tal como opera hoy: ARDE custodia el modelo, asume los proveedores y mantiene todo funcionando. La marca solo escribe y descarga. Inicia el <b>1 de agosto de 2026</b>.</p>
     <div class="plan reveal">
       <div class="price-card">
         <div class="pl">Plan mensual</div>
@@ -364,12 +375,41 @@ section{position:relative;z-index:2}
         </div>
       </div>
     </div>
+
+    <div class="opt-h reveal"><span class="on">B</span><h3>Implementación en cuentas de la marca</h3></div>
+    <p class="opt-sub reveal">Exactamente el mismo estudio de voz, pero construido de cero <b>sobre las cuentas y la infraestructura de la marca</b>: la voz se re-clona en una cuenta propia del motor de voz a nombre de la marca, la plataforma se monta en su servidor y dominio, y todo queda conectado y corriendo. ARDE cobra <b>una única vez por la integración y el montaje completo</b>; a partir de ahí, la operación es de la marca.</p>
+    <div class="plan reveal">
+      <div class="price-card alt">
+        <div class="pl">Pago único de integración</div>
+        <div class="amount">$4,900 <small>USD</small></div>
+        <div class="per">una sola vez · llave en mano</div>
+        <div class="cond">
+          <div class="c"><span class="k">Modalidad</span><span class="v">Pago único</span></div>
+          <div class="c"><span class="k">Entrega</span><span class="v">3 semanas</span></div>
+          <div class="c"><span class="k">Capacitación</span><span class="v">Incluida</span></div>
+          <div class="c"><span class="k">Soporte posterior</span><span class="v">Por demanda</span></div>
+        </div>
+      </div>
+      <div>
+        <ul class="inc">
+          <li><b>Re-clonación de la voz de Saúl</b> en cuenta propia de la marca con el proveedor de voz, en plan comercial a su nombre.</li>
+          <li><b>Montaje completo de la plataforma</b> — la misma cabina, con identidad Paper Mate — en servidor y dominio de la marca.</li>
+          <li><b>Conexión y configuración de todo el sistema:</b> llaves, seguridad, accesos y masterización, entregado funcionando.</li>
+          <li><b>Documentación técnica y capacitación</b> al equipo que va a operar y administrar la plataforma.</li>
+          <li><b>Acompañamiento de estabilización de 30 días</b> tras la entrega, para resolver cualquier ajuste de arranque.</li>
+        </ul>
+        <div class="addon">
+          <h4>Lo que asume la marca en esta opción</h4>
+          <p>Los <b>costos directos de los proveedores en USD</b> (motor de voz por consumo y servidor), la <b>operación y el mantenimiento</b> de la plataforma, la custodia del modelo y la gestión de accesos. ARDE queda disponible como soporte por demanda, cotizado por requerimiento.</p>
+        </div>
+      </div>
+    </div>
     <div class="note reveal">
       <p><b>El valor del plan no es el servidor — es la operación del activo.</b> Una sesión de locutor en cabina cuesta entre USD $80 y $150 por lote de frases y requiere agenda y disponibilidad. El plan entrega hasta 500 audios al mes, al instante, con la voz oficial del personaje, protegida y operada por ARDE.</p>
     </div>
     <div class="note reveal">
       <h4>¿El modelo de voz se entrega como archivo?</h4>
-      <p>El modelo de voz no es un archivo que se pueda entregar — es un activo que vive en una <b>bóveda privada del motor de voz, protegido por licencia</b>. Lo que ustedes reciben, <b>sin límite de uso, son los audios terminados</b>. Si en algún momento quisieran operar el modelo directamente, existe un camino de licenciamiento propio con el proveedor, y con gusto lo estructuramos — pero es un proyecto de transferencia aparte, no parte del plan mensual.</p>
+      <p>El modelo de voz no es un archivo que se pueda entregar — es un activo que vive en una <b>bóveda privada del motor de voz, protegido por licencia</b>. En el plan mensual, lo que ustedes reciben, <b>sin límite de uso, son los audios terminados</b>. Si prefieren operar el modelo directamente, ese es exactamente el camino de la <b>Opción B</b>: licenciamiento propio con el proveedor y todo el sistema montado en sus cuentas.</p>
     </div>
   </div>
 </section>
