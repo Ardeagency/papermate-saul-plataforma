@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARDE × Paper Mate · Estudio de Voz de Saúl · Plataforma</title>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="description" content="Estudio de Voz de Saúl — cómo está construida la plataforma, cómo opera y el plan de servicio mensual. ARDE Agency.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ardeagency.github.io/papermate-saul-plataforma/">
+<meta property="og:site_name" content="ARDE Agency">
+<meta property="og:title" content="ARDE × Paper Mate · Estudio de Voz de Saúl">
+<meta property="og:description" content="La voz oficial de Saúl, disponible 24/7. Cómo está construida la plataforma y cómo opera el servicio.">
+<meta property="og:image" content="https://ardeagency.github.io/papermate-saul-plataforma/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ARDE × Paper Mate · Estudio de Voz de Saúl">
+<meta name="twitter:description" content="Cómo está construida la plataforma de voz de Saúl y cómo opera el servicio.">
+<meta name="twitter:image" content="https://ardeagency.github.io/papermate-saul-plataforma/assets/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f1ece3;--cream-2:#e8e1d4;--ink:#0e0d0b;--ink-soft:#1a1916;
+  --red:#ee3a23;--red-deep:#cf2d18;--muted:#6c665d;--muted-d:#9b9a96;
+  --line:rgba(14,13,11,.14);--line-d:rgba(255,255,255,.14);
+  --sans:'Archivo',system-ui,sans-serif;--body:'Inter',system-ui,sans-serif;--display:'Anton',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--ink);color:var(--cream);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:var(--red);color:#fff}
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--red);z-index:200;transition:width .1s linear}
+.nav{position:fixed;top:0;left:0;right:0;z-index:150;display:flex;justify-content:space-between;align-items:center;padding:18px 40px;mix-blend-mode:difference;pointer-events:none}
+.nav .brand{font-family:var(--sans);font-weight:800;font-size:13px;letter-spacing:.22em;color:#fff}
+.nav .tag{font-family:var(--sans);font-weight:500;font-size:10px;letter-spacing:.28em;color:#fff;opacity:.7;text-transform:uppercase}
+@media(max-width:640px){.nav{padding:14px 20px}.nav .tag{display:none}}
+.glow{position:fixed;border-radius:50%;filter:blur(120px);opacity:.5;z-index:0;pointer-events:none}
+.glow.a{width:520px;height:520px;background:radial-gradient(circle,#ee3a2399,transparent 70%);top:-160px;right:-120px}
+.glow.b{width:600px;height:600px;background:radial-gradient(circle,#ee3a2366,transparent 70%);bottom:10%;left:-200px}
+section{position:relative;z-index:2}
+.wrap{max-width:1180px;margin:0 auto;padding:0 40px}
+@media(max-width:640px){.wrap{padding:0 22px}}
+.eyebrow{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--red);display:inline-block}
+
+/* hero */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 40px 60px;overflow:hidden;position:relative}
+.hero .wrap{padding:0;display:grid;grid-template-columns:1.35fr 1fr;gap:50px;align-items:center;width:100%}
+.hero-meta-top{font-family:var(--sans);font-weight:600;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted-d);margin-bottom:30px;opacity:0;animation:fade .8s .1s forwards}
+.hero h1{font-family:var(--sans);font-weight:900;line-height:.92;letter-spacing:-.02em;font-size:clamp(42px,7vw,96px);text-transform:uppercase}
+.hero h1 .l{display:inline-block;opacity:0;transform:translateY(40px);animation:drop .7s forwards}
+.hero h1 .red{color:var(--red)}
+.hero-sub{font-size:clamp(16px,2.1vw,21px);color:var(--cream);max-width:600px;margin-top:28px;line-height:1.5;opacity:0;animation:fade 1s 1.1s forwards}
+.hero-sub b{font-weight:700;color:#fff}
+.hero-row{display:flex;gap:38px;flex-wrap:wrap;margin-top:46px;opacity:0;animation:fade 1s 1.35s forwards}
+.hero-row .it .k{font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-d);margin-bottom:7px}
+.hero-row .it .v{font-family:var(--sans);font-weight:700;font-size:15px;color:var(--cream)}
+.hero-img{position:relative;opacity:0;animation:fade 1.2s .7s forwards}
+.hero-img img{width:100%;max-width:430px;border-radius:14px;display:block;margin-left:auto;box-shadow:0 40px 90px rgba(0,0,0,.55)}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero-img img{margin:0 auto;max-width:320px}}
+.scroll-cue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-family:var(--sans);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted-d);opacity:0;animation:fade 1s 1.8s forwards;display:flex;flex-direction:column;align-items:center;gap:8px}
+.scroll-cue span{width:1px;height:34px;background:linear-gradient(var(--red),transparent);animation:cue 1.6s infinite}
+@keyframes cue{0%{opacity:0;transform:scaleY(.3)}50%{opacity:1}100%{opacity:0;transform:scaleY(1)}}
+@keyframes drop{to{opacity:1;transform:translateY(0)}}
+@keyframes fade{to{opacity:1}}
+
+.marquee{background:var(--red);color:#fff;overflow:hidden;white-space:nowrap;padding:14px 0;border-top:1px solid var(--red-deep)}
+.marquee .track{display:inline-block;animation:scroll 30s linear infinite;font-family:var(--sans);font-weight:800;font-size:15px;letter-spacing:.12em;text-transform:uppercase}
+.marquee .track span{margin:0 26px;opacity:.95}
+.marquee .track span.o{opacity:.55}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.cream{background:var(--cream);color:var(--ink)}
+.cream .muted{color:var(--muted)}
+.ink-block{background:#000;color:var(--cream)}
+.block{padding:120px 0}
+@media(max-width:640px){.block{padding:80px 0}}
+.section-head{margin-bottom:56px}
+.section-head h2{font-family:var(--sans);font-weight:900;line-height:.98;letter-spacing:-.02em;font-size:clamp(32px,5.4vw,64px);text-transform:uppercase;margin-top:20px}
+.section-head h2 .red{color:var(--red)}
+.lede{font-size:clamp(17px,2.2vw,21px);line-height:1.6;max-width:760px;margin-top:24px;color:var(--muted)}
+.lede b{color:var(--ink);font-weight:600}
+.ink-block .lede{color:var(--muted-d)}
+.ink-block .lede b{color:#fff}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:50px}
+.stat{border-top:2px solid var(--red);padding-top:20px}
+.stat .n{font-family:var(--display);font-size:clamp(34px,4.5vw,52px);color:var(--ink);line-height:.95}
+.stat .n em{font-style:normal;color:var(--red)}
+.stat .d{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.5}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* pieces */
+.pieces{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}
+.piece{border:1px solid var(--line-d);border-radius:12px;padding:34px 30px;background:var(--ink-soft);display:flex;flex-direction:column}
+.piece .pn{font-family:var(--display);font-size:15px;letter-spacing:.14em;color:var(--red);text-transform:uppercase}
+.piece h3{font-family:var(--sans);font-weight:900;font-size:clamp(22px,2.6vw,28px);text-transform:uppercase;color:#fff;margin:16px 0 4px;line-height:1.05;letter-spacing:-.01em}
+.piece .sub{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-d);margin-bottom:16px}
+.piece p{font-size:14.5px;color:var(--muted-d);line-height:1.6;margin-bottom:12px}
+.piece p b{color:var(--cream);font-weight:600}
+.piece .ana{margin-top:auto;border-left:2px solid var(--red);padding:10px 0 10px 16px;font-size:13.5px;color:var(--cream);line-height:1.55;font-style:italic}
+@media(max-width:860px){.pieces{grid-template-columns:1fr}}
+
+/* flow steps */
+.steps{margin-top:44px;border-top:2px solid var(--red)}
+.step{display:grid;grid-template-columns:70px 1fr 2fr;gap:22px;padding:26px 0;border-bottom:1px solid var(--line);align-items:start}
+.step .sn{font-family:var(--display);font-size:34px;color:var(--red);line-height:.9}
+.step h3{font-family:var(--sans);font-weight:800;font-size:17px;text-transform:uppercase;letter-spacing:-.01em}
+.step p{font-size:15px;color:var(--muted);line-height:1.6}
+.step p b{color:var(--ink);font-weight:600}
+@media(max-width:760px){.step{grid-template-columns:50px 1fr}.step p{grid-column:2}}
+
+/* routes */
+.routes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}
+.route{border:1px solid var(--line-d);border-radius:12px;padding:32px 28px;min-height:250px;display:flex;flex-direction:column}
+.route.win{border-color:var(--red);background:rgba(238,58,35,.07)}
+.route .tag{font-family:var(--sans);font-weight:700;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-d)}
+.route.win .tag{color:var(--red)}
+.route h3{font-family:var(--sans);font-weight:900;font-size:clamp(19px,2.2vw,23px);text-transform:uppercase;color:#fff;line-height:1.1;margin:14px 0 12px;letter-spacing:-.01em}
+.route p{font-size:14px;color:var(--muted-d);line-height:1.6}
+.route .verdict{margin-top:auto;padding-top:18px;font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-d)}
+.route.win .verdict{color:var(--red)}
+@media(max-width:860px){.routes{grid-template-columns:1fr}.route{min-height:0}}
+
+/* service grid */
+.svc{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:44px;border-top:2px solid var(--red)}
+.svc .it{padding:30px 34px 30px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:54px 1fr;gap:16px;align-items:start}
+.svc .it .n{font-family:var(--display);font-size:24px;color:var(--red);line-height:1.1}
+.svc .it h3{font-family:var(--sans);font-weight:800;font-size:16px;text-transform:uppercase;margin-bottom:8px;letter-spacing:-.01em}
+.svc .it p{font-size:14px;color:var(--muted);line-height:1.6}
+@media(max-width:760px){.svc{grid-template-columns:1fr}.svc .it{padding-right:0}}
+
+/* plan */
+.plan{display:grid;grid-template-columns:1fr 1.2fr;gap:56px;margin-top:20px;align-items:start}
+.price-card{border:1px solid var(--red);border-radius:14px;padding:44px 40px;background:rgba(238,58,35,.06);position:sticky;top:90px}
+.price-card .pl{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--red)}
+.price-card .amount{font-family:var(--display);font-size:clamp(56px,7vw,84px);color:#fff;line-height:1;margin-top:18px}
+.price-card .amount small{font-size:22px;color:var(--muted-d);font-family:var(--sans);font-weight:700}
+.price-card .per{font-family:var(--sans);font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-d);margin-top:10px}
+.price-card .cond{margin-top:28px;border-top:1px solid var(--line-d);padding-top:22px}
+.price-card .cond .c{display:flex;justify-content:space-between;gap:14px;font-size:13.5px;padding:7px 0}
+.price-card .cond .c .k{color:var(--muted-d)}
+.price-card .cond .c .v{font-family:var(--sans);font-weight:700;color:var(--cream);text-align:right}
+.inc{list-style:none;margin-top:8px}
+.inc li{position:relative;display:block;padding:17px 0 17px 28px;border-bottom:1px solid var(--line-d);font-size:15px;line-height:1.55;color:var(--muted-d)}
+.inc li b{color:#fff;font-weight:600}
+.inc li::before{content:"";position:absolute;left:0;top:24px;width:9px;height:9px;border-radius:50%;background:var(--red)}
+.addon{margin-top:34px;border:1px dashed var(--line-d);border-radius:10px;padding:24px 26px}
+.addon h4{font-family:var(--sans);font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+.addon p{font-size:14px;color:var(--muted-d);line-height:1.6}
+.addon p b{color:#fff}
+@media(max-width:900px){.plan{grid-template-columns:1fr}.price-card{position:static}}
+
+/* note strip */
+.note{margin-top:56px;border-left:3px solid var(--red);padding:22px 28px;background:var(--ink-soft);border-radius:0 10px 10px 0}
+.note p{font-size:15px;color:var(--muted-d);line-height:1.65}
+.note p b{color:#fff;font-weight:600}
+.note h4{font-family:var(--sans);font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+
+/* footer */
+.footer{padding:110px 0 70px;text-align:center}
+.footer h2{font-family:var(--sans);font-weight:900;font-size:clamp(30px,5vw,58px);text-transform:uppercase;line-height:1;letter-spacing:-.02em}
+.footer h2 .red{color:var(--red)}
+.footer p{color:var(--muted-d);font-size:16px;margin-top:20px;line-height:1.6}
+.ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:40px}
+.btn{font-family:var(--sans);font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:17px 34px;border-radius:60px;transition:transform .2s,box-shadow .2s;display:inline-block}
+.btn:hover{transform:translateY(-2px)}
+.btn.solid{background:var(--red);color:#fff;box-shadow:0 10px 30px rgba(238,58,35,.35)}
+.btn.ghost{border:1px solid var(--line-d);color:var(--cream)}
+.fin{margin-top:70px;border-top:1px solid var(--line-d);padding-top:30px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-d)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s}
+.reveal.on{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<div class="prog" id="prog"></div>
+<nav class="nav"><div class="brand">ARDE</div><div class="tag">Estudio de Voz de Saúl · Confidencial</div></nav>
+<div class="glow a"></div><div class="glow b"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="hero-meta-top">ARDE Agency × Paper Mate · Julio 2026</div>
+      <h1>
+        <span class="l" style="animation-delay:.2s">El estudio</span><br>
+        <span class="l" style="animation-delay:.35s">de voz de</span><br>
+        <span class="l red" style="animation-delay:.5s">Saúl.</span>
+      </h1>
+      <p class="hero-sub">La voz oficial de Saúl, disponible <b>24/7</b>. Se escribe la frase, se elige la emoción, y en <b>~2 segundos</b> hay un audio con calidad de emisión listo para descargar. Esta página explica <b>cómo está construida la plataforma</b> y <b>cómo opera el servicio</b>.</p>
+      <div class="hero-row">
+        <div class="it"><div class="k">Plataforma</div><div class="v">saul.ardeagency.com</div></div>
+        <div class="it"><div class="k">Estado</div><div class="v">En operación</div></div>
+        <div class="it"><div class="k">Acceso</div><div class="v">Código privado</div></div>
+      </div>
+    </div>
+    <div class="hero-img"><img src="assets/saul_mic.jpg" alt="Saúl en el estudio de voz"></div>
+  </div>
+  <div class="scroll-cue">Desliza<span></span></div>
+</section>
+
+<div class="marquee"><div class="track">
+  <span>La voz de Saúl</span><span class="o">·</span><span>Disponible 24/7</span><span class="o">·</span><span>Audio en 2 segundos</span><span class="o">·</span><span>Calidad de emisión</span><span class="o">·</span><span>Bóveda privada</span><span class="o">·</span><span>Operado por ARDE</span><span class="o">·</span>
+  <span>La voz de Saúl</span><span class="o">·</span><span>Disponible 24/7</span><span class="o">·</span><span>Audio en 2 segundos</span><span class="o">·</span><span>Calidad de emisión</span><span class="o">·</span><span>Bóveda privada</span><span class="o">·</span><span>Operado por ARDE</span><span class="o">·</span>
+</div></div>
+
+<!-- 01 QUE ES -->
+<section class="cream block">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">01 · Qué es</div>
+      <h2>Saúl, siempre<br>disponible <span class="red">para grabar.</span></h2>
+      <p class="lede">Antes, cada frase de Saúl requería agendar cabina, locutor y sesión. Hoy el equipo de la marca <b>escribe el guion y recibe el audio al instante</b>, con el timbre, la energía y la personalidad oficial del personaje — en la emoción que pida la pieza.</p>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><div class="n"><em>~2</em>s</div><div class="d">de espera por audio generado, con masterización automática a estándar broadcast.</div></div>
+      <div class="stat"><div class="n"><em>5</em></div><div class="d">emociones dirigidas: enérgico, cálido, juguetón, susurro y grito, con control de velocidad.</div></div>
+      <div class="stat"><div class="n">24<em>/</em>7</div><div class="d">de disponibilidad. Sin agendas, sin sesiones, sin depender de la disponibilidad de un locutor.</div></div>
+      <div class="stat"><div class="n"><em>1</em></div><div class="d">voz oficial protegida: la misma en cada campaña, cada retail y cada pieza digital.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 COMO ESTA CONSTRUIDA -->
+<section class="ink-block block">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">02 · Cómo está construida</div>
+      <h2>Un estudio de grabación<br><span class="red">digital, en tres piezas.</span></h2>
+      <p class="lede">La plataforma funciona como un estudio de grabación profesional. Tiene un talento, una fábrica y una cabina — y las tres piezas operan juntas cada vez que alguien genera un audio.</p>
+    </div>
+    <div class="pieces reveal">
+      <div class="piece">
+        <div class="pn">Pieza 01</div>
+        <h3>La voz</h3>
+        <div class="sub">El talento</div>
+        <p>Con el material de voz original de Saúl entrenamos un <b>modelo de voz</b>: una réplica digital que aprendió su timbre, su energía y su manera de hablar.</p>
+        <p>Ese modelo vive en una <b>bóveda digital privada</b> de un proveedor especializado de clase mundial. Nadie fuera de este proyecto puede verlo ni usarlo. Es un activo de la marca, bajo custodia de ARDE.</p>
+        <div class="ana">Es como haber grabado a Saúl diciendo todo lo que podría llegar a decir algún día — ahora solo hay que escribirle el guion.</div>
+      </div>
+      <div class="piece">
+        <div class="pn">Pieza 02</div>
+        <h3>El motor</h3>
+        <div class="sub">La fábrica</div>
+        <p>Cuando alguien escribe una frase, esta viaja a un <b>motor profesional de síntesis de voz</b> donde el modelo de Saúl la "actúa" y devuelve el audio en ~2 segundos.</p>
+        <p>Esa conexión se hace por <b>API</b> — un enchufe de servicios. Como la energía eléctrica: no se necesita una represa en casa, uno se conecta a la red y <b>se paga por lo que se consume</b>, mes a mes.</p>
+        <div class="ana">El mesero de un restaurante: se pide el plato (la frase), lo lleva a la cocina (el motor) y trae el resultado (el audio). Nunca hay que entrar a la cocina.</div>
+      </div>
+      <div class="piece">
+        <div class="pn">Pieza 03</div>
+        <h3>La cabina</h3>
+        <div class="sub">Construida por ARDE</div>
+        <p>Todo lo que la marca ve y toca lo diseñó y construyó ARDE desde cero: la interfaz con identidad Paper Mate, las <b>emociones y efectos</b>, la velocidad de habla, los favoritos, el historial y la descarga en alta calidad.</p>
+        <p>Vive en un <b>servidor propio de ARDE</b>, con dominio y certificado de seguridad. La entrada es con <b>código privado</b> y la llave que conecta con el motor está protegida en el servidor: <b>ningún usuario puede verla ni extraerla</b>.</p>
+        <div class="ana">La cabina donde el equipo dirige a Saúl — sin necesitar saber nada de lo que pasa detrás del vidrio.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 RECORRIDO -->
+<section class="cream block">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">03 · El recorrido de un audio</div>
+      <h2>De la frase al audio<br><span class="red">en 10 segundos.</span></h2>
+    </div>
+    <div class="steps reveal">
+      <div class="step"><div class="sn">01</div><h3>Se escribe</h3><p>Alguien del equipo entra con el código privado, escribe <b>"¡Hola! Soy Saúl"</b> y elige la emoción — por ejemplo, <b>juguetón</b> — y la velocidad.</p></div>
+      <div class="step"><div class="sn">02</div><h3>Se dirige</h3><p>La plataforma de ARDE le agrega la <b>dirección de actuación</b> (cómo debe interpretarse la frase) y la envía de forma segura al motor de voz.</p></div>
+      <div class="step"><div class="sn">03</div><h3>Se graba</h3><p>El modelo de Saúl "actúa" la frase y devuelve el audio en <b>~2 segundos</b>, con el timbre y la energía oficiales del personaje.</p></div>
+      <div class="step"><div class="sn">04</div><h3>Se masteriza</h3><p>El servidor de ARDE recibe el audio y lo <b>nivela a estándar broadcast</b>. Queda en pantalla listo para escuchar, marcar como favorito y descargar en alta calidad.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 POR QUE ESTE CAMINO -->
+<section class="ink-block block">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">04 · Por qué este camino</div>
+      <h2>Más de 15 procesos.<br><span class="red">Tres rutas. Una elegida.</span></h2>
+      <p class="lede">Llegar a esta calidad no fue un intento: se exploraron <b>más de 15 procesos de clonación de voz por tres rutas técnicas distintas</b> antes de elegir la arquitectura definitiva. La calidad que exige un personaje de marca no se logra con herramientas gratuitas.</p>
+    </div>
+    <div class="routes reveal">
+      <div class="route">
+        <div class="tag">Ruta 01 · Descartada</div>
+        <h3>Motores libres autohospedados</h3>
+        <p>Entrenamos modelos propios en servidores con GPU dedicada y probamos varios motores de código abierto. Ninguno alcanzó la calidad de marca de forma consistente: voces que perdían volumen, artefactos, poca expresividad — y un costo de GPU por hora para mantenerlo encendido.</p>
+        <div class="verdict">Calidad insuficiente para la marca</div>
+      </div>
+      <div class="route">
+        <div class="tag">Ruta 02 · Descartada</div>
+        <h3>Plataformas comerciales genéricas</h3>
+        <p>Se evaluaron las plataformas comerciales grandes del mercado. Buena calidad general, pero suscripciones más costosas, menos control del proceso y una experiencia que no se puede personalizar con la identidad de Paper Mate.</p>
+        <div class="verdict">Menos control, mayor costo</div>
+      </div>
+      <div class="route win">
+        <div class="tag">Ruta 03 · Elegida</div>
+        <h3>Motor profesional + plataforma propia ARDE</h3>
+        <p>Un modelo de voz profesional en bóveda privada, conectado por API a una plataforma construida a la medida por ARDE. La mejor fidelidad lograda en todas las pruebas, generación en ~2 segundos, y control total de la experiencia y del activo.</p>
+        <div class="verdict">✓ La arquitectura en operación hoy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 SERVICIO VIVO -->
+<section class="cream block">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">05 · Un servicio vivo</div>
+      <h2>No es un software que se entrega.<br><span class="red">Es un servicio que opera.</span></h2>
+      <p class="lede">A diferencia de un video o una imagen que se entregan una vez, la voz de Saúl es un <b>activo en operación permanente</b>: el modelo está custodiado en una bóveda, el motor se renta mes a mes, y la plataforma se mantiene, se monitorea y se mejora. Por eso funciona como <b>suscripción mensual</b>, no como entregable único.</p>
+    </div>
+    <div class="svc reveal">
+      <div class="it"><div class="n">01</div><div><h3>Custodia del activo de voz</h3><p>El modelo de Saúl es un activo de la marca. ARDE lo protege, administra los accesos y garantiza que nadie fuera del proyecto pueda usarlo.</p></div></div>
+      <div class="it"><div class="n">02</div><div><h3>Motor de voz profesional</h3><p>La conexión al motor de síntesis de clase mundial se paga por consumo, mes a mes. El plan la incluye — la marca nunca administra proveedores en USD.</p></div></div>
+      <div class="it"><div class="n">03</div><div><h3>Plataforma, hosting y seguridad</h3><p>Servidor, dominio, certificado, monitoreo y protección de llaves. La plataforma en línea 24/7 con la puerta cerrada a terceros.</p></div></div>
+      <div class="it"><div class="n">04</div><div><h3>Soporte y mejoras continuas</h3><p>Acompañamiento al equipo de la marca, ajustes de calidad y nuevas funciones — emociones, efectos y formatos se agregan sin costo de desarrollo aparte.</p></div></div>
+      <div class="it"><div class="n">05</div><div><h3>Reentrenamiento del modelo</h3><p>Cuando exista material nuevo de la voz de Saúl, el modelo se reentrena para mejorar fidelidad y expresividad. La voz mejora con el tiempo.</p></div></div>
+      <div class="it"><div class="n">06</div><div><h3>Dirección creativa de voz</h3><p>ARDE cuida que cada audio suene a Saúl: dirección de actuación, control de calidad y criterio de marca en cada generación.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 PLAN -->
+<section class="ink-block block">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">06 · Plan de servicio</div>
+      <h2>Saúl Voice Studio<br><span class="red">Plan mensual.</span></h2>
+      <p class="lede">Un valor fijo mensual, presupuestable y sin sorpresas, que cubre la operación completa del estudio de voz. La fase de prueba actual concluye el <b>31 de julio de 2026</b>; el plan formal inicia el <b>1 de agosto de 2026</b>.</p>
+    </div>
+    <div class="plan reveal">
+      <div class="price-card">
+        <div class="pl">Plan mensual</div>
+        <div class="amount">$250 <small>USD</small></div>
+        <div class="per">por mes · todo incluido</div>
+        <div class="cond">
+          <div class="c"><span class="k">Audios incluidos</span><span class="v">Hasta 500 / mes</span></div>
+          <div class="c"><span class="k">Inicio de facturación</span><span class="v">1 · Ago · 2026</span></div>
+          <div class="c"><span class="k">Vigencia mínima</span><span class="v">6 meses</span></div>
+          <div class="c"><span class="k">Facturación</span><span class="v">Mensual</span></div>
+        </div>
+      </div>
+      <div>
+        <ul class="inc">
+          <li><b>Hasta 500 audios por mes</b> — 2.5× el límite de la fase de prueba actual, con descarga en alta calidad.</li>
+          <li><b>Custodia del modelo de voz</b> en bóveda privada, con gestión de accesos por código.</li>
+          <li><b>Motor de voz profesional incluido</b> — ARDE asume y administra el consumo del proveedor.</li>
+          <li><b>Hosting, dominio, seguridad y monitoreo</b> de la plataforma 24/7.</li>
+          <li><b>Soporte al equipo de la marca</b> y mejoras continuas de la plataforma.</li>
+          <li><b>1 reentrenamiento del modelo al año</b> con material nuevo de Saúl, para que la voz mejore con el tiempo.</li>
+        </ul>
+        <div class="addon">
+          <h4>Si la operación crece</h4>
+          <p><b>Paquete adicional: +250 audios por USD $150</b> en el mes que se necesite — pensado para picos de campaña como Back to School. Nuevas emociones o estilos de voz se cotizan como desarrollo aparte.</p>
+        </div>
+      </div>
+    </div>
+    <div class="note reveal">
+      <p><b>El valor del plan no es el servidor — es la operación del activo.</b> Una sesión de locutor en cabina cuesta entre USD $80 y $150 por lote de frases y requiere agenda y disponibilidad. El plan entrega hasta 500 audios al mes, al instante, con la voz oficial del personaje, protegida y operada por ARDE.</p>
+    </div>
+    <div class="note reveal">
+      <h4>¿El modelo de voz se entrega como archivo?</h4>
+      <p>El modelo de voz no es un archivo que se pueda entregar — es un activo que vive en una <b>bóveda privada del motor de voz, protegido por licencia</b>. Lo que ustedes reciben, <b>sin límite de uso, son los audios terminados</b>. Si en algún momento quisieran operar el modelo directamente, existe un camino de licenciamiento propio con el proveedor, y con gusto lo estructuramos — pero es un proyecto de transferencia aparte, no parte del plan mensual.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<section class="footer">
+  <div class="wrap">
+    <h2>La voz de Saúl<br><span class="red">está lista.</span></h2>
+    <p>Conversemos los siguientes pasos para formalizar el plan de servicio.</p>
+    <div class="ctas">
+      <a class="btn solid" href="https://wa.me/573218300088" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+      <a class="btn ghost" href="mailto:info@ardeagency.com?subject=Estudio%20de%20Voz%20de%20Sa%C3%BAl%20%C2%B7%20Plan%20mensual">Escribir a ARDE</a>
+    </div>
+    <div class="fin">
+      <span>ARDE Agency S.A.S · AI Craft. Human Vision.</span>
+      <span>Documento confidencial · Julio 2026</span>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var prog=document.getElementById('prog');
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var p=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    prog.style.width=p+'%';
+  },{passive:true});
+  var els=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});},{threshold:.12});
+    els.forEach(function(el){io.observe(el);});
+  }else{els.forEach(function(el){el.classList.add('on');});}
+})();
+</script>
+
+<script>
+/* ARDE tracking unificado v2: filtro de bots + gate humano + apertura + destinatario + visitas + heatmap + clics (ntfy.sh) */
+(function(){
+  try{
+    var ARDE_SELF=false;/*self*/try{fetch('https://ipapi.co/json/').then(function(r){return r.json();}).then(function(d){if(/rionegro|llanogrande/i.test((d.city||'')+' '+(d.region||''))&&!/[?&]test=1/i.test(location.search))ARDE_SELF=true;}).catch(function(){});}catch(e){}var TOPIC='https://ntfy.sh/arde-cotizaciones-7k2pqz9x';
+    var LABEL='Plataforma Voz Saul', KEY='saulplataforma';
+    var ua=navigator.userAgent||'';
+    var isBot = navigator.webdriver===true
+      || /bot\b|crawl|spider|slurp|bingbot|yandex|baidu|duckduckbot|headless|phantom|puppeteer|playwright|python-|curl\/|wget|libwww|httpclient|okhttp|go-http|java\/|facebookexternalhit|embedly|telegrambot|whatsapp|discordbot|slackbot|twitterbot|linkedinbot|googlebot|applebot|lighthouse|pingdom|uptimerobot|datadog|semrush|ahrefs|mj12bot|dotbot|petalbot|bytespider|gptbot|ccbot|claudebot|amazonbot|zgrab|censys|shodan|expanse|netcraft|httpx|nmap|masscan|paloalto|internetmeasurement/i.test(ua)||(function(){var m=ua.match(/Chrome\/(\d+)/);return !!m&&+m[1]<90;})();
+    if(isBot) return;
+    function qp(n){try{var m=location.search.match(new RegExp('[?&]'+n+'=([^&]+)'));return m?decodeURIComponent(m[1].replace(/\+/g,' ')):'';}catch(e){return '';}}
+    var who=qp('to')||qp('p');
+    var whoLine=who?('\nDestinatario: '+who):'';
+    function post(title,tags,body){if(ARDE_SELF)return; try{ fetch(TOPIC,{method:'POST',keepalive:true,headers:{'Title':title,'Tags':tags},body:body}); }catch(e){ try{navigator.sendBeacon(TOPIC,body);}catch(e2){} } }
+    var interacted=false;
+    ['scroll','mousemove','touchstart','keydown','pointerdown'].forEach(function(ev){window.addEventListener(ev,function(){interacted=true;},{passive:true});});
+    var vis=0,lastV=Date.now();
+    function vtick(){ if(document.visibilityState==='visible')vis+=Date.now()-lastV; lastV=Date.now(); }
+    setInterval(vtick,1000);
+    var maxPct=0,deepest='';
+    function onScroll(){ var h=document.documentElement; var sc=h.scrollTop||document.body.scrollTop||0; var p=Math.round((sc+h.clientHeight)/h.scrollHeight*100); if(p>maxPct)maxPct=Math.min(100,p); }
+    window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+    var eb=[].slice.call(document.querySelectorAll('.eyebrow,.board-tag'));
+    if(eb.length && 'IntersectionObserver' in window){
+      var io2=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){ deepest=e.target.textContent.trim().replace(/\s+/g,' '); }});},{threshold:.4});
+      eb.forEach(function(el){io2.observe(el);});
+    }
+    var openSent=false;
+    function maybeOpen(){
+      if(openSent)return; vtick();
+      if((interacted && vis>=2500) || vis>=9000){
+        openSent=true;
+        var visits=0;
+        try{ visits=parseInt(localStorage.getItem('arde_v_'+KEY)||'0',10)||0;
+          if(!sessionStorage.getItem('arde_s_'+KEY)){ sessionStorage.setItem('arde_s_'+KEY,'1'); visits+=1; localStorage.setItem('arde_v_'+KEY,String(visits)); }
+        }catch(e){}
+        var rep=visits>=2?(' (visita #'+visits+', repetida)'):'';
+        function openPing(loc){ post('ARDE - Abrieron: '+LABEL,(visits>=2?'fire,eyes':'eyes'),
+          'Abrieron: '+LABEL+rep+whoLine+'\n'+loc+'\nLlego desde: '+(document.referrer||'enlace directo')+'\nDispositivo: '+ua.slice(0,90)); }
+        fetch('https://ipapi.co/json/').then(function(r){return r.json();}).then(function(d){if(/rionegro|llanogrande/i.test((d.city||'')+' '+(d.region||''))&&!/[?&]test=1/i.test(location.search))ARDE_SELF=true;
+          openPing('Ubicacion: '+(d.city||'?')+', '+(d.region||'')+' '+(d.country_name||'?')+' (IP '+(d.ip||'?')+')');
+        }).catch(function(){ openPing('Ubicacion: no disponible'); });
+      }
+    }
+    var gi=setInterval(function(){ maybeOpen(); if(openSent)clearInterval(gi); },1000);
+    var sentH=false;
+    function fmt(ms){var s=Math.round(ms/1000),m=Math.floor(s/60);return m+'m '+(s%60)+'s';}
+    function sendH(){ if(sentH)return; sentH=true; vtick(); if(!openSent)return;
+      post('ARDE - Lectura: '+LABEL,'book,bar_chart','Leyo: '+LABEL+whoLine+'\nProfundidad: '+maxPct+'%'+(maxPct>=90?' (llego al final)':'')+'\nSeccion mas avanzada: '+(deepest||'inicio')+'\nTiempo activo: '+fmt(vis)); }
+    document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='hidden')sendH(); });
+    window.addEventListener('pagehide',sendH);
+    document.addEventListener('click',function(ev){
+      var a=ev.target.closest&&ev.target.closest('a'); if(!a)return;
+      var href=a.getAttribute('href')||''; var isCTA=a.classList.contains('btn')||a.classList.contains('pitch-card')||href.indexOf('wa.me')>-1||href.indexOf('mailto:')>-1||href.indexOf('.pdf')>-1;
+      if(!isCTA)return;
+      var t=(a.textContent||'').trim().replace(/\s+/g,' ').slice(0,40);
+      post('ARDE - Clic CTA: '+LABEL,'point_up,white_check_mark','Hizo clic en "'+t+'"\nPropuesta: '+LABEL+whoLine);
+    },true);
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
