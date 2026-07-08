@@ -73,6 +73,10 @@ section{position:relative;z-index:2}
 .marquee .track span.o{opacity:.55}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
+/* banner video */
+.banner-video{line-height:0;overflow:hidden;background:#000}
+.banner-video video{width:100%;max-height:86vh;object-fit:cover;display:block}
+
 .cream{background:var(--cream);color:var(--ink)}
 .cream .muted{color:var(--muted)}
 .ink-block{background:#000;color:var(--cream)}
@@ -224,6 +228,13 @@ section{position:relative;z-index:2}
   <span>La voz de Saúl</span><span class="o">·</span><span>Disponible 24/7</span><span class="o">·</span><span>Audio en 2 segundos</span><span class="o">·</span><span>Calidad de emisión</span><span class="o">·</span><span>Bóveda privada</span><span class="o">·</span><span>Operado por ARDE</span><span class="o">·</span>
   <span>La voz de Saúl</span><span class="o">·</span><span>Disponible 24/7</span><span class="o">·</span><span>Audio en 2 segundos</span><span class="o">·</span><span>Calidad de emisión</span><span class="o">·</span><span>Bóveda privada</span><span class="o">·</span><span>Operado por ARDE</span><span class="o">·</span>
 </div></div>
+
+<!-- BANNER VIDEO -->
+<div class="banner-video">
+  <video autoplay muted loop playsinline preload="metadata" poster="assets/saul_studio_banner_poster.jpg" aria-label="Saúl grabando en el estudio de voz">
+    <source src="assets/saul_studio_banner.mp4" type="video/mp4">
+  </video>
+</div>
 
 <!-- 01 QUE ES -->
 <section class="cream block">
