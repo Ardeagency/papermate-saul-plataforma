@@ -96,6 +96,12 @@ section{position:relative;z-index:2}
 
 /* pieces */
 .pieces{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}
+.pieces.two{grid-template-columns:repeat(2,1fr)}
+.piece .seclist{list-style:none;margin-top:6px}
+.piece .seclist li{position:relative;padding:13px 0 13px 24px;border-bottom:1px solid var(--line-d);font-size:14px;line-height:1.55;color:var(--muted-d)}
+.piece .seclist li:last-child{border-bottom:none}
+.piece .seclist li b{color:var(--cream);font-weight:600}
+.piece .seclist li::before{content:"";position:absolute;left:0;top:19px;width:8px;height:8px;border-radius:50%;background:var(--red)}
 .piece{border:1px solid var(--line-d);border-radius:12px;padding:34px 30px;background:var(--ink-soft);display:flex;flex-direction:column}
 .piece .pn{font-family:var(--display);font-size:15px;letter-spacing:.14em;color:var(--red);text-transform:uppercase}
 .piece h3{font-family:var(--sans);font-weight:900;font-size:clamp(22px,2.6vw,28px);text-transform:uppercase;color:#fff;margin:16px 0 4px;line-height:1.05;letter-spacing:-.01em}
@@ -122,6 +128,7 @@ section{position:relative;z-index:2}
 .route.win .tag{color:var(--red)}
 .route h3{font-family:var(--sans);font-weight:900;font-size:clamp(19px,2.2vw,23px);text-transform:uppercase;color:#fff;line-height:1.1;margin:14px 0 12px;letter-spacing:-.01em}
 .route p{font-size:14px;color:var(--muted-d);line-height:1.6}
+.route p b{color:#fff;font-weight:600}
 .route .verdict{margin-top:auto;padding-top:18px;font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-d)}
 .route.win .verdict{color:var(--red)}
 @media(max-width:860px){.routes{grid-template-columns:1fr}.route{min-height:0}}
@@ -224,7 +231,7 @@ section{position:relative;z-index:2}
     <div class="section-head reveal">
       <div class="eyebrow">01 · Qué es</div>
       <h2>Saúl, siempre<br>disponible <span class="red">para grabar.</span></h2>
-      <p class="lede">Antes, la voz de Saúl se producía de forma <b>artesanal</b>: una voz de IA no clonada que había que ajustar a mano, pieza por pieza, sin garantía de que sonara igual la próxima vez. Hoy existe la <b>voz oficial clonada del personaje</b>: el equipo de la marca <b>escribe el guion y recibe el audio al instante</b>, con el mismo timbre, energía y personalidad, en la emoción que pida la pieza.</p>
+      <p class="lede">Antes, la voz de Saúl se producía de forma <b>artesanal</b>: una voz de IA no clonada que había que ajustar a mano, pieza por pieza, sin garantía de que sonara igual la próxima vez. Hoy existe la <b>voz oficial clonada del personaje</b>: cualquier equipo de la marca, en cualquier país, y las agencias con las que trabaja, <b>escribe el guion y recibe el audio al instante</b>, con el mismo timbre, energía y personalidad, en la emoción que pida la pieza.</p>
     </div>
     <div class="stats reveal">
       <div class="stat"><div class="n"><em>~2</em>s</div><div class="d">de espera por audio generado, con masterización automática a estándar broadcast.</div></div>
@@ -306,8 +313,8 @@ section{position:relative;z-index:2}
       <div class="route">
         <div class="tag">Ruta 02 · Descartada</div>
         <h3>Plataformas comerciales genéricas</h3>
-        <p>Se evaluaron las plataformas comerciales grandes del mercado. Buena calidad general, pero suscripciones más costosas, menos control del proceso y una experiencia que no se puede personalizar con la identidad de Paper Mate.</p>
-        <div class="verdict">Menos control, mayor costo</div>
+        <p>Se evaluaron las plataformas comerciales grandes del mercado. El bloqueo fue de fondo: para crear un clon profesional exigen una <b>verificación de identidad por voz</b>: la persona debe leer un texto en vivo para demostrar que existe y que autoriza el clon. Saúl es un personaje, no una persona, así que esa vía era inviable. A eso se sumaban suscripciones más costosas y una experiencia que no se puede personalizar con la identidad de Paper Mate.</p>
+        <div class="verdict">Inviable para un personaje</div>
       </div>
       <div class="route win">
         <div class="tag">Ruta 03 · Elegida</div>
@@ -319,11 +326,46 @@ section{position:relative;z-index:2}
   </div>
 </section>
 
-<!-- 05 SERVICIO VIVO -->
+<!-- 05 SEGURIDAD Y PROPIEDAD -->
+<section class="ink-block block" style="border-top:1px solid var(--line-d)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">05 · Seguridad y propiedad</div>
+      <h2>Una voz protegida.<br><span class="red">Una voz de Paper Mate.</span></h2>
+      <p class="lede">El estudio de voz maneja un activo sensible de la marca. Por eso la plataforma está blindada en cada capa, y la propiedad de la voz queda clara desde el inicio.</p>
+    </div>
+    <div class="pieces two reveal">
+      <div class="piece">
+        <div class="pn">Blindaje</div>
+        <h3>Seguridad de la plataforma</h3>
+        <ul class="seclist">
+          <li><b>Puerta con código de acceso privado:</b> solo entra quien la marca autorice: equipos internos de cualquier país y las agencias de cada equipo. Los códigos se pueden rotar o revocar en cualquier momento.</li>
+          <li><b>Cifrado HTTPS en todo el recorrido</b>, con certificado propio y conexión segura forzada (HSTS): nada viaja en texto plano.</li>
+          <li><b>La llave del motor de voz vive solo en el servidor de ARDE.</b> Nunca llega al navegador: ningún usuario puede verla ni extraerla.</li>
+          <li><b>Cabeceras de seguridad de estándar enterprise:</b> política estricta de contenido (CSP), protección contra suplantación de la página (clickjacking) y bloqueo de micrófono, cámara y ubicación.</li>
+          <li><b>Monitoreo y control de uso:</b> límites de generación que protegen la operación ante cualquier abuso.</li>
+        </ul>
+      </div>
+      <div class="piece">
+        <div class="pn">Propiedad</div>
+        <h3>La voz es de Paper Mate</h3>
+        <ul class="seclist">
+          <li><b>Clonada exclusivamente para Paper Mate:</b> el modelo fue entrenado únicamente con material de voz de Saúl y existe solo para este proyecto.</li>
+          <li><b>Uso exclusivo de la marca:</b> la voz no se usa, no se licencia y no se mezcla con ningún otro cliente ni proyecto de ARDE.</li>
+          <li><b>Bóveda privada:</b> el modelo no aparece en ningún catálogo público del proveedor y ningún tercero puede acceder a él.</li>
+          <li><b>ARDE es custodio, no dueño:</b> en el plan mensual, ARDE protege y opera el activo por encargo de la marca.</li>
+          <li><b>Camino a propiedad total:</b> con la Opción B, el clon y toda la operación quedan directamente en cuentas de la marca.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 SERVICIO VIVO -->
 <section class="cream block">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow">05 · Un servicio vivo</div>
+      <div class="eyebrow">06 · Un servicio vivo</div>
       <h2>No es un software que se entrega.<br><span class="red">Es un servicio que opera.</span></h2>
       <p class="lede">A diferencia de un video o una imagen que se entregan una vez, la voz de Saúl es un <b>activo en operación permanente</b>: el modelo está custodiado en una bóveda, el motor se renta mes a mes, y la plataforma se mantiene, se monitorea y se mejora. Por eso funciona como <b>suscripción mensual</b>, no como entregable único.</p>
     </div>
@@ -338,11 +380,11 @@ section{position:relative;z-index:2}
   </div>
 </section>
 
-<!-- 06 PLAN -->
+<!-- 07 PLAN -->
 <section class="ink-block block">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow">06 · Plan de servicio</div>
+      <div class="eyebrow">07 · Plan de servicio</div>
       <h2>Saúl Voice Studio<br><span class="red">Dos formas de tenerlo.</span></h2>
       <p class="lede">La fase de prueba actual concluye el <b>31 de julio de 2026</b>. A partir de ahí, la marca elige el camino: un <b>plan mensual operado por ARDE</b>, o la <b>implementación completa en cuentas propias de la marca</b> con un pago único de integración.</p>
     </div>
@@ -363,6 +405,7 @@ section{position:relative;z-index:2}
       <div>
         <ul class="inc">
           <li><b>Hasta 500 audios por mes</b>: 2.5× el límite de la fase de prueba actual, con descarga en alta calidad.</li>
+          <li><b>Acceso para todos los equipos de la marca, en todos los países,</b> y para las agencias con las que trabaja cada equipo. Códigos de acceso administrables por equipo.</li>
           <li><b>Custodia del modelo de voz</b> en bóveda privada, con gestión de accesos por código.</li>
           <li><b>Motor de voz profesional incluido</b>: ARDE asume y administra el consumo del proveedor.</li>
           <li><b>Hosting, dominio, seguridad y monitoreo</b> de la plataforma 24/7.</li>
